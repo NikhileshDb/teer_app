@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "13067739313",
+    "project_id": "teercommon-1519e",
+    "storage_bucket": "teercommon-1519e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13067739313:android:bef1e3872a192e3e918290",
+        "android_client_info": {
+          "package_name": "com.example.teer_common"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13067739313-j855ablasufrmbkug8oavd29e48ql0u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcHZkUaG74qw4qe_3U30khh3EydAVb_BQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13067739313-j855ablasufrmbkug8oavd29e48ql0u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
