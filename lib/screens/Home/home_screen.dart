@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final teerResults = Provider.of<List<TeerResult>>(context);
+    final teerResults = Provider.of<List<TeerResult>?>(context);
     return AnimatedContainer(
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
         ..scale(scaleFactor),
@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverAppBar(
               backgroundColor: Colors.black,
               floating: true,
-              expandedHeight: 200,
-              // title: Text('TEER APP'),
+              // expandedHeight: 200,
+              title: const Text('TEER RESULTS'),
               pinned: true,
               centerTitle: false,
               leading: isDrawerOpen
@@ -70,16 +70,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottomRight: Radius.circular(20),
                 ),
               ),
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  'Latest Results',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                background: Image.network(
-                  'https://i0.wp.com/www.tacticalgearslab.com/wp-content/uploads/2019/08/Best-Bow-Hunting-Gloves1.jpg',
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
+              // flexibleSpace: FlexibleSpaceBar(
+              //   title: const Text(
+              //     'Latest Results',
+              //     style: TextStyle(fontWeight: FontWeight.bold),
+              //   ),
+              //   background: Image.network(
+              //     'https://i0.wp.com/www.tacticalgearslab.com/wp-content/uploads/2019/08/Best-Bow-Hunting-Gloves1.jpg',
+              //     fit: BoxFit.fitWidth,
+              //   ),
+              // ),
               actions: [
                 IconButton(
                   onPressed: () {},
@@ -92,12 +92,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverToBoxAdapter(
               child: ListView.builder(
                 itemBuilder: (context, index) => ListCard(
-                  firstRound: teerResults[index].firstRound,
-                  secondRound: teerResults[index].secondRound,
-                  date: teerResults[index].date,
-                  provider: teerResults[index].provider,
+                  firstRound: teerResults?[index].firstRound,
+                  secondRound: teerResults?[index].secondRound,
+                  date: teerResults?[index].date,
+                  gameProvider: teerResults?[index].provider,
                 ),
-                itemCount: teerResults.length,
+                itemCount: teerResults?.length,
                 primary: false,
                 shrinkWrap: true,
               ),

@@ -8,32 +8,34 @@ class ListCard extends StatelessWidget {
     this.firstRound,
     this.secondRound,
     required this.date,
-    required this.provider,
+    required this.gameProvider,
   }) : super(key: key);
   final int? firstRound;
   final int? secondRound;
-  final DateTime date;
-  final String provider;
+  final DateTime? date;
+  final String? gameProvider;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkResponse(
+      customBorder:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      containedInkWell: true,
+      splashColor: Colors.red,
+      highlightColor: Colors.white.withOpacity(0),
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => HistoryScreen(gamePlace: provider)));
+                builder: (context) =>
+                    HistoryScreen(gameProvider: gameProvider)));
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+        margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.orangeAccent, Colors.redAccent],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
-          borderRadius: BorderRadius.all(
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: Colors.black),
+          borderRadius: const BorderRadius.all(
             Radius.circular(24),
           ),
         ),
@@ -42,15 +44,15 @@ class ListCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(
+                Icon(
                   Icons.label,
-                  color: Colors.white,
+                  color: Colors.grey.shade700,
                   size: 24,
                 ),
                 Text(
-                  provider,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  gameProvider ?? "Not Available",
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
                   ),
                 )
               ],
@@ -64,38 +66,38 @@ class ListCard extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      const Text(
+                      Text(
                         'FIRST ROUND',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.white,
+                          color: Colors.grey.shade900,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         firstRound.toString(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 36,
-                          color: Colors.white,
+                          color: Colors.grey.shade900,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                   Column(children: [
-                    const Text(
+                    Text(
                       'SECOND ROUND',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white,
+                        color: Colors.grey.shade900,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       secondRound.toString(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 36,
-                        color: Colors.white,
+                        color: Colors.grey.shade900,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -106,8 +108,8 @@ class ListCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  DateFormat('EEEE').format(date),
-                  style: const TextStyle(color: Colors.white),
+                  DateFormat('EEEE').format(date ?? DateTime.now()),
+                  style: TextStyle(color: Colors.grey.shade900),
                 ),
               ],
             ),
@@ -115,15 +117,15 @@ class ListCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  DateFormat('jm').format(date),
-                  style: const TextStyle(
-                    color: Colors.white,
+                  DateFormat('jm').format(date ?? DateTime.now()),
+                  style: TextStyle(
+                    color: Colors.grey.shade900,
                   ),
                 ),
                 Text(
-                  DateFormat('dd-MM-yyyy').format(date),
-                  style: const TextStyle(
-                    color: Colors.white,
+                  DateFormat('dd-MM-yyyy').format(date ?? DateTime.now()),
+                  style: TextStyle(
+                    color: Colors.grey.shade900,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),

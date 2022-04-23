@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:teer_common/screens/History/get_popular_number.dart';
+
+import '../../global_components/constants.dart';
+import '../../models/teer_result.dart';
 
 class StatisticTab extends StatefulWidget {
-  const StatisticTab({Key? key}) : super(key: key);
+  const StatisticTab({Key? key, required this.sliderVal}) : super(key: key);
+  final double sliderVal;
 
   @override
   State<StatisticTab> createState() => _StatisticTabState();
@@ -10,12 +16,128 @@ class StatisticTab extends StatefulWidget {
 class _StatisticTabState extends State<StatisticTab> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: TextButton(
-          onPressed: () {
-            // DatabaseService().filterTeer('Shillong Teer');
-          },
-          child: const Text('Fetch')),
+    final _data = Provider.of<List<TeerResult>>(context);
+    List firstRoundAllPopularItems = [];
+    List secondRoundAllMostPopularItems = [];
+    List<int?> firstRoundList = [];
+    List<int?> secondRoundList = [];
+
+    setState(() {
+      final results = _data.map((doc) => doc.toMap());
+      for (final result in results) {
+        firstRoundList.add(result['firstRound']);
+        secondRoundList.add(result['secondRound']);
+      }
+      firstRoundAllPopularItems.add(firstRoundList.mostPopularItems().toList());
+      // firstRoundAllPopularItems
+      //     .add(firstRoundList.secondMostPopularItems().toList());
+      secondRoundAllMostPopularItems
+          .add(secondRoundList.mostPopularItems().toList());
+      // secondRoundAllMostPopularItems
+      //     .add(secondRoundList.secondMostPopularItems().toList());
+    });
+
+    List<dynamic> setToIterableList(List listObj) {
+      List newList = listObj.expand((el) => el).toList();
+      return newList;
+    }
+
+    final popularNumber = setToIterableList(firstRoundAllPopularItems);
+    final popularSecondRound =
+        setToIterableList(secondRoundAllMostPopularItems);
+
+    return Container(
+      color: kprimaryLight,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
+            child: Text(
+                'Showing  Hot Number from ${widget.sliderVal.toStringAsFixed(0)} days Results',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
+            child: Text('First Round',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: popularNumber
+                  .map(
+                    (e) => Container(
+                      height: 80,
+                      width: 80,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 2),
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                      ),
+                      child: Center(
+                        child: Text(
+                          e.toString(),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
+            child: Text('Second Round',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: popularSecondRound
+                  .map(
+                    (e) => Container(
+                      height: 80,
+                      width: 80,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 2),
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                      ),
+                      child: Center(
+                        child: Text(
+                          e.toString(),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text('Charts'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

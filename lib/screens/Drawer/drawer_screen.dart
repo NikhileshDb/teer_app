@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:teer_common/global_components/constants.dart';
 
+import '../../services/auth_service.dart';
+import '../Settings/settings_screen.dart';
 import 'drawer_menu_item.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -11,6 +14,7 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,10 +65,18 @@ class _DrawerScreenState extends State<DrawerScreen> {
               const SizedBox(
                 width: 10,
               ),
-              Text(
-                'Settings',
-                style: TextStyle(
-                    color: Colors.grey.shade700, fontWeight: FontWeight.bold),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsScreen()));
+                },
+                child: Text(
+                  'Settings',
+                  style: TextStyle(
+                      color: Colors.grey.shade700, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(
                 width: 10,
@@ -77,10 +89,35 @@ class _DrawerScreenState extends State<DrawerScreen> {
               const SizedBox(
                 width: 10,
               ),
-              Text(
-                'Log out',
-                style: TextStyle(
-                    color: Colors.grey.shade700, fontWeight: FontWeight.bold),
+              TextButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Sign out'),
+                      content: const Text('Are you sure you want to sign out?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('No'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _auth.signOut(context);
+                          },
+                          child: const Text('Yes'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                child: Text(
+                  'Log out',
+                  style: TextStyle(
+                      color: Colors.grey.shade700, fontWeight: FontWeight.bold),
+                ),
               )
             ],
           )

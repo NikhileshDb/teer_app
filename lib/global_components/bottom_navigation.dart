@@ -1,10 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:teer_common/screens/Common/common_number.dart';
 
 import '../screens/Drawer/drawer_wrapper.dart';
 import '../screens/History/result_history.dart';
 
-import '../screens/Profile/profile_screen.dart';
 import 'constants.dart';
 
 class NavigationCurved extends StatefulWidget {
@@ -20,7 +20,7 @@ class _NavigationCurvedState extends State<NavigationCurved> {
   final screens = [
     const DrawerWrapper(),
     const HistoryScreen(),
-    const ProfileScreen(),
+    const CommonNumber(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _NavigationCurvedState extends State<NavigationCurved> {
         color: Colors.white,
       ),
       const Icon(
-        Icons.person,
+        Icons.comment_bank,
         size: 30,
         color: Colors.white,
       ),

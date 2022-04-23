@@ -31,7 +31,7 @@ class TeerResult {
     return <String, dynamic>{
       'firstRound': firstRound,
       'secondRound': secondRound,
-      'date': date.millisecondsSinceEpoch,
+      'date': date,
       'provider': provider,
     };
   }
@@ -41,7 +41,7 @@ class TeerResult {
       firstRound: map['firstRound'] != null ? map['firstRound'] as int : null,
       secondRound:
           map['secondRound'] != null ? map['secondRound'] as int : null,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      date: DateTime.parse(map['date']),
       provider: map['provider'] as String,
     );
   }
