@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:teer_common/screens/Common/common_number.dart';
 
+import '../screens/Common/common_screen.dart';
 import '../screens/Drawer/drawer_wrapper.dart';
 import '../screens/History/result_history.dart';
 
@@ -17,10 +17,10 @@ class NavigationCurved extends StatefulWidget {
 class _NavigationCurvedState extends State<NavigationCurved> {
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
   int index = 0;
-  final screens = [
+  List<StatefulWidget> screens = [
     const DrawerWrapper(),
     const HistoryScreen(),
-    const CommonNumber(),
+    const CommoNumberScreen(),
   ];
   @override
   Widget build(BuildContext context) {

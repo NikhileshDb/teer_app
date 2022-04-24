@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:teer_common/global_components/constants.dart';
 
 import '../../models/teer_result.dart';
-import '../../services/database/database_service.dart';
+
 import '../History/error_box.dart';
 import 'list_card.dart';
 
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: isDrawerOpen ? Colors.white : kprimaryLight,
-        body: teerResults!.isEmpty
+        body: teerResults == null
             ? const ErrorBox(errorMessage: "No Results Found")
             : CustomScrollView(
                 scrollDirection: Axis.vertical,
@@ -89,8 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {
                           // DatabaseService().addDoc();
                           // DatabaseService().addCommonNumber();
-                          // final result = DatabaseService().getCommonNumberBy(
-                          //     "Shillong Teer", DateTime.parse("2022-04-23"));
+                          // final result = DatabaseService()
+                          //     .getCommonNumberBy(DateTime.parse("2022-04-23"));
                           // print(result);
                         },
                         icon: const Icon(Icons.notifications),

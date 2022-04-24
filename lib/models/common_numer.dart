@@ -7,21 +7,29 @@ class CommonNumberModel {
   final List<dynamic> commonNumber;
   final String provider;
   final DateTime date;
+  final int house;
+  final int ending;
   CommonNumberModel({
     required this.commonNumber,
     required this.provider,
     required this.date,
+    required this.house,
+    required this.ending,
   });
 
   CommonNumberModel copyWith({
-    List<int>? commonNumber,
+    List<dynamic>? commonNumber,
     String? provider,
     DateTime? date,
+    int? house,
+    int? ending,
   }) {
     return CommonNumberModel(
       commonNumber: commonNumber ?? this.commonNumber,
       provider: provider ?? this.provider,
       date: date ?? this.date,
+      house: house ?? this.house,
+      ending: ending ?? this.ending,
     );
   }
 
@@ -30,6 +38,8 @@ class CommonNumberModel {
       'commonNumber': commonNumber,
       'provider': provider,
       'date': date,
+      'house': house,
+      'ending': ending,
     };
   }
 
@@ -42,6 +52,8 @@ class CommonNumberModel {
       commonNumber: newList.map((e) => int.parse(e)).toList(),
       provider: map['provider'] as String,
       date: map['date'].toDate(),
+      house: map['house'] as int,
+      ending: map['ending'] as int,
     );
   }
 
@@ -51,8 +63,9 @@ class CommonNumberModel {
       CommonNumberModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'CommonNumberModel(commonNumber: $commonNumber, provider: $provider, date: $date)';
+  String toString() {
+    return 'CommonNumberModel(commonNumber: $commonNumber, provider: $provider, date: $date, house: $house, ending: $ending)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -61,9 +74,17 @@ class CommonNumberModel {
     return other is CommonNumberModel &&
         listEquals(other.commonNumber, commonNumber) &&
         other.provider == provider &&
-        other.date == date;
+        other.date == date &&
+        other.house == house &&
+        other.ending == ending;
   }
 
   @override
-  int get hashCode => commonNumber.hashCode ^ provider.hashCode ^ date.hashCode;
+  int get hashCode {
+    return commonNumber.hashCode ^
+        provider.hashCode ^
+        date.hashCode ^
+        house.hashCode ^
+        ending.hashCode;
+  }
 }

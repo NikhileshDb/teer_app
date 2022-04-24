@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:teer_common/global_components/constants.dart';
 
 import '../../services/auth_service.dart';
-import '../Common/common_number.dart';
+
 import '../History/result_history.dart';
 
 import 'drawer_menu_item.dart';
@@ -76,12 +76,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 icon: Icons.track_changes,
                 title: 'Common Number',
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CommonNumber(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const CommonNumber(),
+                  //   ),
+                  // );
                 },
               ),
             ],
