@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:teer_common/models/common_numer.dart';
 
-import '../../Data/data_2022.dart';
+import '../../Data/juwai.dart';
 import '../../models/profile_details.dart';
 import '../../models/teer_result.dart';
 
@@ -13,7 +14,8 @@ class DatabaseService {
   //latest result collection reference
   final CollectionReference latestResult =
       FirebaseFirestore.instance.collection('results');
-
+  final CollectionReference commomNumberRef =
+      FirebaseFirestore.instance.collection("common_numbers");
 //setProfileData
   Future updateProfileData(String? displayName, String? photoURL,
       int? phoneNumber, String? email) async {
@@ -54,7 +56,7 @@ class DatabaseService {
 
   //import docs
   void addDoc() {
-    final results = data_2022.map((doc) => TeerResult(
+    final results = juwai.map((doc) => TeerResult(
         date: DateTime.parse(doc['date']),
         provider: doc['provider'],
         firstRound: int.parse(doc['firstRound']),
@@ -105,5 +107,52 @@ class DatabaseService {
       );
     }).toList();
   }
-  //
+
+  Future<CommonNumberModel?> getCommonNumberBy(
+      String? provider, DateTime? date) async {
+    QuerySnapshot result = await commomNumberRef
+        .where('provider', isEqualTo: provider)
+        .where('date', isGreaterThan: date)
+        .where(
+          'date',
+          isLessThan: date?.add(
+            const Duration(hours: 15),
+          ),
+        )
+        .limit(1)
+        .get();
+
+    // for (var snapshot in result.docs) {
+    //   print(snapshot['commonNumber']);
+    //   final item = CommonNumberModel.fromMap({
+    //     "date": snapshot['date'],
+    //     "provider": snapshot['provider'],
+    //     "commonNumber": snapshot['commonNumber'],
+    //   });
+    //   print(item.commonNumber);
+    //   model = item;
+    // }
+    //
+
+    final model = result.docs.map((e) {
+      return CommonNumberModel(
+        commonNumber: e['commonNumber'],
+        date: e['date'].toDate(),
+        provider: e['provider'],
+      );
+    }).toList();
+    if (model.isEmpty) {
+      return null;
+    }
+    return model.first;
+  }
+
+  //common Number
+  void addCommonNumber() {
+    commomNumberRef.add({
+      'commonNumber': [23, 21, 4, 2, 11],
+      'provider': "Shillong Teer",
+      'date': DateTime.now().add(const Duration(days: 1)),
+    });
+  }
 }

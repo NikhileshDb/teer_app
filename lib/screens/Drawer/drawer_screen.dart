@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:teer_common/global_components/constants.dart';
 
 import '../../services/auth_service.dart';
-import '../Settings/settings_screen.dart';
+import '../Common/common_number.dart';
+import '../History/result_history.dart';
+
 import 'drawer_menu_item.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -45,15 +47,43 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ],
           ),
           Column(
-            children: const [
-              DrawerMenuItem(icon: Icons.location_on, title: 'Shillong Result'),
+            children: [
               DrawerMenuItem(
-                  icon: Icons.location_city, title: 'Khanapara Result'),
-              DrawerMenuItem(icon: Icons.track_changes, title: 'Common Number'),
-              DrawerMenuItem(icon: Icons.wb_cloudy, title: 'Dream Number'),
+                icon: Icons.location_on,
+                title: 'Shillong Result',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HistoryScreen(
+                                gameProvider: "Shillong Teer",
+                              )));
+                },
+              ),
               DrawerMenuItem(
-                  icon: Icons.multiple_stop, title: 'Previous Number'),
-              DrawerMenuItem(icon: Icons.notifications, title: 'Notification'),
+                icon: Icons.location_city,
+                title: 'Khanapara Result',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HistoryScreen(
+                                gameProvider: "Khanapara",
+                              )));
+                },
+              ),
+              DrawerMenuItem(
+                icon: Icons.track_changes,
+                title: 'Common Number',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CommonNumber(),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
           Row(
@@ -65,30 +95,30 @@ class _DrawerScreenState extends State<DrawerScreen> {
               const SizedBox(
                 width: 10,
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SettingsScreen()));
-                },
-                child: Text(
-                  'Settings',
-                  style: TextStyle(
-                      color: Colors.grey.shade700, fontWeight: FontWeight.bold),
-                ),
-              ),
+              // TextButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const SettingsScreen()));
+              //   },
+              //   child: Text(
+              //     'Settings',
+              //     style: TextStyle(
+              //         color: Colors.grey.shade700, fontWeight: FontWeight.bold),
+              //   ),
+              // ),
               const SizedBox(
                 width: 10,
               ),
-              Container(
-                width: 2,
-                height: 20,
-                color: Colors.black,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
+              // Container(
+              //   width: 2,
+              //   height: 20,
+              //   color: Colors.black,
+              // ),
+              // const SizedBox(
+              //   width: 10,
+              // ),
               TextButton(
                 onPressed: () {
                   showDialog(
