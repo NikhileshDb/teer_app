@@ -43,31 +43,31 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor: Colors.black,
                     floating: true,
                     // expandedHeight: 200,
-                    title: const Text('TEER RESULTS'),
+                    title: const Text('TEER APP'),
                     pinned: true,
                     centerTitle: false,
-                    leading: isDrawerOpen
-                        ? IconButton(
-                            icon: const Icon(Icons.arrow_back_ios),
-                            onPressed: () {
-                              setState(() {
-                                xOffset = 0;
-                                yOffset = 0;
-                                scaleFactor = 1;
-                                isDrawerOpen = false;
-                              });
-                            })
-                        : IconButton(
-                            icon: const Icon(Icons.menu),
-                            onPressed: () {
-                              setState(() {
-                                xOffset = 230;
-                                yOffset = 150;
-                                scaleFactor = 0.6;
-                                isDrawerOpen = true;
-                              });
-                            },
-                          ),
+                    // leading: isDrawerOpen
+                    //     ? IconButton(
+                    //         icon: const Icon(Icons.arrow_back_ios),
+                    //         onPressed: () {
+                    //           setState(() {
+                    //             xOffset = 0;
+                    //             yOffset = 0;
+                    //             scaleFactor = 1;
+                    //             isDrawerOpen = false;
+                    //           });
+                    //         })
+                    //     : IconButton(
+                    //         icon: const Icon(Icons.menu),
+                    //         onPressed: () {
+                    //           setState(() {
+                    //             xOffset = 230;
+                    //             yOffset = 150;
+                    //             scaleFactor = 0.6;
+                    //             isDrawerOpen = true;
+                    //           });
+                    //         },
+                    //       ),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20),

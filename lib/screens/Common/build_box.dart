@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../global_components/constants.dart';
-
 class BuildBox extends StatelessWidget {
   const BuildBox({
     Key? key,
@@ -27,7 +25,7 @@ class BuildBox extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       width: size.width * 0.8,
       decoration: BoxDecoration(
-        color: ksecondaryLight,
+        color: Colors.white,
         boxShadow: const [
           BoxShadow(
             color: Colors.grey,
@@ -59,7 +57,7 @@ class BuildBox extends StatelessWidget {
                           ))
                       .toList()),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

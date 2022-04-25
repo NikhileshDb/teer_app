@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:teer_common/global_components/constants.dart';
+import 'package:teer_common/screens/Profile/profile_screen.dart';
 
 import '../../services/auth_service.dart';
 
+import '../Common/common_screen.dart';
 import '../History/result_history.dart';
 
+import '../Settings/settings_screen.dart';
 import 'drawer_menu_item.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -76,12 +79,24 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 icon: Icons.track_changes,
                 title: 'Common Number',
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const CommonNumber(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CommoNumberScreen(),
+                    ),
+                  );
+                },
+              ),
+              DrawerMenuItem(
+                icon: Icons.track_changes,
+                title: 'Edit Profile',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ),
+                  );
                 },
               ),
             ],
@@ -95,30 +110,32 @@ class _DrawerScreenState extends State<DrawerScreen> {
               const SizedBox(
                 width: 10,
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     Navigator.push(
-              //         context,
-              //         MaterialPageRoute(
-              //             builder: (context) => const SettingsScreen()));
-              //   },
-              //   child: Text(
-              //     'Settings',
-              //     style: TextStyle(
-              //         color: Colors.grey.shade700, fontWeight: FontWeight.bold),
-              //   ),
-              // ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingsScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Settings',
+                  style: TextStyle(
+                      color: Colors.grey.shade700, fontWeight: FontWeight.bold),
+                ),
+              ),
               const SizedBox(
                 width: 10,
               ),
-              // Container(
-              //   width: 2,
-              //   height: 20,
-              //   color: Colors.black,
-              // ),
-              // const SizedBox(
-              //   width: 10,
-              // ),
+              Container(
+                width: 2,
+                height: 20,
+                color: Colors.black,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
               TextButton(
                 onPressed: () {
                   showDialog(

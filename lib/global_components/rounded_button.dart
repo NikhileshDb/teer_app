@@ -12,7 +12,7 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.pinkAccent[100]),
+        backgroundColor: MaterialStateProperty.all(Colors.blueAccent[100]),
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         minimumSize: MaterialStateProperty.all<Size>(
           const Size(300, 50),
