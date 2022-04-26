@@ -4,6 +4,8 @@ import 'package:teer_common/global_components/constants.dart';
 
 import '../../models/teer_result.dart';
 
+import '../../services/firebase_messaging.dart';
+import '../../services/push_notification_service.dart';
 import '../History/error_box.dart';
 import 'list_card.dart';
 
@@ -19,9 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
   double yOffset = 0;
   double scaleFactor = 1;
   bool isDrawerOpen = false;
+  // Firebase cloud messaging
+  @override
+  void initState() {
+    super.initState();
+    fireBaseMessagingService(context);
+  }
 
   @override
   Widget build(BuildContext context) {
+    LocalNotificationService.initialize(context);
     final teerResults = Provider.of<List<TeerResult>?>(context);
     return AnimatedContainer(
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
@@ -92,8 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           // final result = DatabaseService()
                           //     .getCommonNumberBy(DateTime.parse("2022-04-23"));
                           // print(result);
+                          Navigator.of(context).pushNamed('/settings');
                         },
-                        icon: const Icon(Icons.notifications),
+                        icon: const Icon(Icons.settings),
                       ),
                       const SizedBox(width: 12),
                     ],

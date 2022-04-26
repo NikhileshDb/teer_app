@@ -46,7 +46,7 @@ class AuthService {
       User? user = result.user;
 
       await DatabaseService(uid: user!.uid).updateProfileData(
-          'Nikhiles', 'assets/images/avatar.jpg', 9856369623, email);
+          'Your FullName', 'assets/images/avatar.jpg', 9856369623, email);
       return userFromFirebase(user);
     } on FirebaseAuthException catch (e) {
       return e.code;
@@ -63,6 +63,26 @@ class AuthService {
       return userFromFirebase(user);
     } on FirebaseAuthException catch (e) {
       return e.code;
+    }
+  }
+
+  //loged in user update Password
+  Future updatePasswordLoggedInUser(
+      String? newPassword, BuildContext context) async {
+    if (newPassword != null) {
+      try {
+        await _auth.currentUser?.updatePassword(newPassword).then(
+              (_) => ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Password has been changed successfully!'),
+                ),
+              ),
+            );
+        return 'Successful!';
+      } catch (e) {
+        print(e.toString());
+        return "Unsucessful!";
+      }
     }
   }
 }

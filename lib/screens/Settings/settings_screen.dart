@@ -11,6 +11,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  TextEditingController newPasswordController = TextEditingController();
+  String errorAuth = "";
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -53,35 +56,90 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const Divider(height: 15, thickness: 2),
             const SizedBox(height: 10),
-            buildAccountOptionRow(context, 'Change Password'),
-            buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
-            buildAccountOptionRow(context, "Language"),
-            buildAccountOptionRow(context, "Privacy and Security"),
+            buildAccountOptionRow(context, 'Change Password', () {
+              showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                        title: const Text('Set new password'),
+                        content: SizedBox(
+                          height: 100,
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            children: [
+                              TextField(
+                                controller: newPasswordController,
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  label: Text('New Password'),
+                                  hintText: "************",
+                                  prefixIcon: Icon(Icons.key),
+                                ),
+                                onChanged: (val) {},
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                child: const Text('Cancel'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              TextButton(
+                                  child: const Text('Confirm'),
+                                  onPressed: () async {
+                                    final result =
+                                        await _auth.updatePasswordLoggedInUser(
+                                            newPasswordController.text,
+                                            context);
+                                    setState(() {
+                                      errorAuth = result;
+                                    });
+                                    if (result == "Successful!") {
+                                      Navigator.pop(context);
+                                    } else {
+                                      setState(() {
+                                        errorAuth = result;
+                                      });
+                                    }
+                                  }),
+                            ],
+                          )
+                        ],
+                      ));
+            }),
+            // buildAccountOptionRow(context, "Content settings"),
+            // buildAccountOptionRow(context, "Social"),
+            // buildAccountOptionRow(context, "Language"),
+            // buildAccountOptionRow(context, "Privacy and Security"),
             const SizedBox(
               height: 40,
             ),
             Row(
               children: const [
-                Icon(
-                  Icons.volume_up_outlined,
-                  color: Colors.green,
-                ),
+                // Icon(
+                //   Icons.volume_up_outlined,
+                //   color: Colors.green,
+                // ),
                 SizedBox(width: 8),
-                Text(
-                  "Notifications",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                // Text(
+                //   "Notifications",
+                //   style: TextStyle(
+                //     fontSize: 18,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
               ],
             ),
             const Divider(height: 15, thickness: 2),
             const SizedBox(height: 10),
-            buildNotificationOptionRow("Account activity"),
-            buildNotificationOptionRow("Opportunity"),
-            buildNotificationOptionRow("New for you"),
+            // buildNotificationOptionRow("Account activity"),
+            // buildNotificationOptionRow("Opportunity"),
+            // buildNotificationOptionRow("New for you"),
             const SizedBox(height: 50),
             OutlinedButton(
               onPressed: () {
@@ -158,44 +216,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
   GestureDetector buildAccountOptionRow(
     BuildContext context,
     String title,
+    VoidCallback onTap,
   ) {
     return GestureDetector(
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  children: const [
-                    Text("Option 1"),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Close'),
-                  ),
-                ],
-              );
-            });
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey[600],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                Text(errorAuth),
+                const Icon(Icons.arrow_forward_ios, color: Colors.grey),
+              ],
             ),
-            const Icon(Icons.arrow_forward_ios, color: Colors.grey),
           ],
         ),
       ),
