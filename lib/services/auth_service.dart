@@ -80,7 +80,6 @@ class AuthService {
             );
         return 'Successful!';
       } catch (e) {
-        print(e.toString());
         return "Unsucessful!";
       }
     }

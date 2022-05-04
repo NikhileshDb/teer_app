@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../global_components/account_check_text.dart';
 import '../../../global_components/loading.dart';
@@ -38,17 +37,15 @@ class _RegisterFormState extends State<RegisterForm> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Sign Up',
+                      Text(
+                        'REGISTER',
                         style: TextStyle(
                             fontSize: 24.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black38),
+                            color: Colors.blueAccent[100]),
                       ),
-                      SvgPicture.asset(
-                        'assets/svg/signup.svg',
-                        height: size.height * 0.25,
-                      ),
+                      Image.asset("assets/images/logo.png",
+                          height: size.height * 0.10),
                       RoundedTextFormField(
                         onChanged: (val) {
                           setState(() {

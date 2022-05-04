@@ -1,4 +1,4 @@
-package com.example.teer_common
+package com.teerapp.app
 
 import io.flutter.embedding.android.FlutterActivity
 

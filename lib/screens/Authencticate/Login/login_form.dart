@@ -32,84 +32,91 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset("assets/images/logo.png", height: size.height * 0.20),
+            Text(
+              'LOGIN',
+              style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent[100]),
+            ),
+            Image.asset("assets/images/logo.png", height: size.height * 0.10),
             loading
                 ? const Center(
                     heightFactor: 4,
                     widthFactor: 4,
                     child: CircularProgressIndicator())
-                : Column(
-                    children: [
-                      RoundedTextFormField(
-                        onChanged: (val) {
-                          setState(() {
-                            email = val;
-                          });
-                        },
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Enter an email';
-                          } else if (!val.contains('@')) {
-                            return '@ is missing';
-                          } else {
-                            return null;
-                          }
-                        },
-                        hintText: "Email",
-                        icon: const Icon(Icons.email),
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      RoundedTextFormField(
-                        validator: (val) {
-                          if (val!.length < 5) {
-                            return 'Enter a password 5+ char long';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (val) => password = val,
-                        hintText: "Password",
-                        obscureText: true,
-                        icon: const Icon(Icons.lock),
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      Text(
-                        error,
-                        style: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 14.0,
-                        ),
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      RoundedButton(
-                        text: 'Submit',
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
+                : SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        RoundedTextFormField(
+                          onChanged: (val) {
                             setState(() {
-                              loading = true;
+                              email = val;
                             });
-                            dynamic result = await _auth
-                                .signInWithEmailAndPassword(email, password);
-                            if (result == 'user-not-found') {
-                              setState(() {
-                                error = "No user was found for that email.";
-                                loading = false;
-                              });
-                            } else if (result == 'wrong-password') {
-                              setState(() {
-                                error = 'Wrong password!';
-                                loading = false;
-                              });
-                            } else if (result == 'null') {
-                              setState(() {
-                                error = 'Try again!';
-                                loading = false;
-                              });
+                          },
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return 'Enter an email';
+                            } else if (!val.contains('@')) {
+                              return '@ is missing';
+                            } else {
+                              return null;
                             }
-                          }
-                        },
-                      ),
-                    ],
+                          },
+                          hintText: "Email",
+                          icon: const Icon(Icons.email),
+                        ),
+                        SizedBox(height: size.height * 0.01),
+                        RoundedTextFormField(
+                          validator: (val) {
+                            if (val!.length < 5) {
+                              return 'Enter a password 5+ char long';
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (val) => password = val,
+                          hintText: "Password",
+                          obscureText: true,
+                          icon: const Icon(Icons.lock),
+                        ),
+                        Text(
+                          error,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        RoundedButton(
+                          text: 'Submit',
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              setState(() {
+                                loading = true;
+                              });
+                              dynamic result = await _auth
+                                  .signInWithEmailAndPassword(email, password);
+                              if (result == 'user-not-found') {
+                                setState(() {
+                                  error = "No user was found for that email.";
+                                  loading = false;
+                                });
+                              } else if (result == 'wrong-password') {
+                                setState(() {
+                                  error = 'Wrong password!';
+                                  loading = false;
+                                });
+                              } else if (result == 'null') {
+                                setState(() {
+                                  error = 'Try again!';
+                                  loading = false;
+                                });
+                              }
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
             SizedBox(height: size.height * 0.01),
             const Text('Or'),

@@ -36,7 +36,9 @@ class LocalNotificationService {
         payload: message.data["navigate"],
       );
     } on Exception catch (e) {
+      // ignore: avoid_print
       print(e);
+      return null;
     }
   }
 }
