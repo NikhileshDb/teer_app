@@ -17,7 +17,15 @@ class Background extends StatelessWidget {
           bottom: 0,
           right: 0,
         ),
-
+        Positioned(
+          child: Image.asset(
+            'assets/images/login_top.png',
+            width: size.width * 0.80,
+            color: Colors.pinkAccent.withOpacity(0.3),
+          ),
+          top: 0,
+          left: 0,
+        ),
         //login form as paremeter
         child,
       ],

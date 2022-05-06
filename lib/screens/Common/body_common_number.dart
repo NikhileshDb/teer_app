@@ -27,6 +27,13 @@ class _BodyCommonNumberState extends State<BodyCommonNumber> {
 
     return Column(
       children: [
+        const Text(
+          'Common Number',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         _data!.isEmpty
             ? const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 80),
@@ -75,6 +82,13 @@ class _BodyCommonNumberState extends State<BodyCommonNumber> {
                 borderRadius: BorderRadius.circular(30))),
           ),
         ),
+
+        //&************Utility for adding docs in bulk
+        // TextButton(
+        //     onPressed: () {
+        //       DatabaseService().addDoc();
+        //     },
+        //     child: const Text('ADD DATA'))
       ],
     );
   }

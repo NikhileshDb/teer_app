@@ -116,7 +116,11 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/logo.png", height: size.height * 0.25),
+            Image.asset(
+              "assets/images/logo.png",
+              height: size.height * 0.25,
+              color: Colors.blue,
+            ),
             //get the form depending on the state of the firebase phone auth
             showLoading
                 ? CircularProgressIndicator(color: Colors.blueAccent[100])
@@ -200,7 +204,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
         ),
         const SizedBox(height: 20),
         RoundedButton(
-          text: 'Send code',
+          text: 'SEND CODE',
           onPressed: () {
             setState(() {
               showLoading = true;

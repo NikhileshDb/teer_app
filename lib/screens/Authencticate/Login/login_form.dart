@@ -32,14 +32,12 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'LOGIN',
-              style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent[100]),
+            Image.asset(
+              "assets/images/logo.png",
+              height: size.height * 0.15,
+              color: Colors.blueAccent,
             ),
-            Image.asset("assets/images/logo.png", height: size.height * 0.10),
+            SizedBox(height: size.height * 0.01),
             loading
                 ? const Center(
                     heightFactor: 4,
@@ -88,7 +86,7 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                         ),
                         RoundedButton(
-                          text: 'Submit',
+                          text: 'LOGIN',
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               setState(() {

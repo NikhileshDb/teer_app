@@ -21,7 +21,7 @@ class ListCard extends StatelessWidget {
       customBorder:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       containedInkWell: true,
-      splashColor: Colors.red,
+      splashColor: Colors.amberAccent,
       highlightColor: Colors.white.withOpacity(0),
       onTap: () {
         Navigator.push(
@@ -34,6 +34,7 @@ class ListCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
+          color: Colors.deepPurple,
           border: Border.all(width: 1, color: Colors.black),
           borderRadius: const BorderRadius.all(
             Radius.circular(24),
@@ -44,15 +45,16 @@ class ListCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
+                const Icon(
                   Icons.label,
-                  color: Colors.grey.shade700,
-                  size: 24,
+                  color: Colors.orange,
+                  size: 30,
                 ),
                 Text(
                   gameProvider ?? "Not Available",
-                  style: TextStyle(
-                    color: Colors.grey.shade700,
+                  style: const TextStyle(
+                    color: Colors.amberAccent,
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               ],
@@ -66,38 +68,38 @@ class ListCard extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text(
+                      const Text(
                         'FIRST ROUND',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.grey.shade900,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         firstRound.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 36,
-                          color: Colors.grey.shade900,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                   Column(children: [
-                    Text(
+                    const Text(
                       'SECOND ROUND',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.grey.shade900,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       secondRound.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 36,
-                        color: Colors.grey.shade900,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -109,7 +111,10 @@ class ListCard extends StatelessWidget {
               children: [
                 Text(
                   DateFormat('EEEE').format(date ?? DateTime.now()),
-                  style: TextStyle(color: Colors.grey.shade900),
+                  style: const TextStyle(
+                    color: Colors.amberAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -118,14 +123,14 @@ class ListCard extends StatelessWidget {
               children: [
                 Text(
                   DateFormat('jm').format(date ?? DateTime.now()),
-                  style: TextStyle(
-                    color: Colors.grey.shade900,
+                  style: const TextStyle(
+                    color: Colors.amberAccent,
                   ),
                 ),
                 Text(
                   DateFormat('dd-MM-yyyy').format(date ?? DateTime.now()),
-                  style: TextStyle(
-                    color: Colors.grey.shade900,
+                  style: const TextStyle(
+                    color: Colors.amberAccent,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),

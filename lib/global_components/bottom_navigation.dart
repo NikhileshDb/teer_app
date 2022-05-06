@@ -5,8 +5,6 @@ import '../screens/Common/common_screen.dart';
 import '../screens/Drawer/drawer_wrapper.dart';
 import '../screens/History/result_history.dart';
 
-import 'constants.dart';
-
 class NavigationCurved extends StatefulWidget {
   const NavigationCurved({Key? key}) : super(key: key);
 
@@ -56,7 +54,7 @@ class _NavigationCurvedState extends State<NavigationCurved> {
             bottomNavigationBar: CurvedNavigationBar(
               key: navigationKey,
               animationDuration: const Duration(milliseconds: 300),
-              backgroundColor: kprimaryLight,
+              backgroundColor: Colors.white,
               color: Colors.black,
               height: 50,
               index: index,

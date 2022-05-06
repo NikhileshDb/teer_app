@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../global_components/constants.dart';
+
 import '../../models/common_numer.dart';
 import '../../services/database/database_service.dart';
 import 'body_common_number.dart';
@@ -28,11 +28,14 @@ class _CommoNumberScreenState extends State<CommoNumberScreen> {
         value: DatabaseService().getCommonNumberBy(selectedDate),
         initialData: const [],
         child: Scaffold(
-          backgroundColor: kprimaryLight,
+          backgroundColor: Colors.white,
           appBar: AppBar(
-            title: const Text('Common Number'),
+            title: Image.asset(
+              'assets/images/logo.png',
+              height: 70,
+              color: Colors.blue,
+            ),
             backgroundColor: Colors.black,
-            centerTitle: true,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),

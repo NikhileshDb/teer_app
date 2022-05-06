@@ -53,13 +53,13 @@ class DatabaseService {
     });
   }
 
-  //import docs
   // void addDoc() {
-  //   final results = juwai.map((doc) => TeerResult(
-  //       date: DateTime.parse(doc['date']),
-  //       provider: doc['provider'],
-  //       firstRound: int.parse(doc['firstRound']),
-  //       secondRound: int.parse(doc['secondRound'])));
+  //   final results = data.map((doc) => TeerResult(
+  //       date: DateTime.parse(doc['date'] ?? ""),
+  //       provider: doc['provider'] ?? "",
+  //       firstRound: int.parse(doc['firstRound'] ?? ""),
+  //       secondRound: int.parse(doc['secondRound'] ?? "")));
+
   //   for (TeerResult result in results) {
   //     latestResult.add(result.toMap()).then((value) => print(value));
   //   }

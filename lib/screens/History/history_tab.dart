@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:teer_common/global_components/constants.dart';
 
 import '../../models/teer_result.dart';
 import 'error_box.dart';
@@ -23,7 +22,7 @@ class _HistoryTabState extends State<HistoryTab> {
         ? const ErrorBox(errorMessage: "No Results To Show")
         : SingleChildScrollView(
             child: DataTable(
-                decoration: const BoxDecoration(color: kprimaryLight),
+                decoration: const BoxDecoration(color: Colors.white),
                 headingTextStyle: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

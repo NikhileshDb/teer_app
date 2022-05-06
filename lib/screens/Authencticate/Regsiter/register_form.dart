@@ -37,15 +37,11 @@ class _RegisterFormState extends State<RegisterForm> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'REGISTER',
-                        style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueAccent[100]),
+                      Image.asset(
+                        "assets/images/logo.png",
+                        height: size.height * 0.15,
+                        color: Colors.blueAccent,
                       ),
-                      Image.asset("assets/images/logo.png",
-                          height: size.height * 0.10),
                       RoundedTextFormField(
                         onChanged: (val) {
                           setState(() {
@@ -89,7 +85,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                       const SizedBox(height: 10.0),
                       RoundedButton(
-                        text: 'Submit',
+                        text: 'REGISTER',
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             setState(() => loading = true);

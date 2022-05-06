@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teer_common/screens/History/utilities/get_popular_number.dart';
 
-import '../../global_components/constants.dart';
 import '../../models/teer_result.dart';
 import 'error_box.dart';
 import 'utilities/get_the_last_digit.dart';
@@ -55,7 +54,7 @@ class _StatisticTabState extends State<StatisticTab> {
             errorMessage: "No Result to Show",
           )
         : Container(
-            color: kprimaryLight,
+            color: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

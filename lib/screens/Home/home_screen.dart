@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:teer_common/global_components/constants.dart';
 
 import '../../models/teer_result.dart';
 
@@ -42,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
         extendBody: true,
-        backgroundColor: isDrawerOpen ? Colors.white : kprimaryLight,
+        backgroundColor: isDrawerOpen ? Colors.white : Colors.white,
         body: teerResults == null
             ? const ErrorBox(errorMessage: "No Results Found")
             : CustomScrollView(
@@ -52,7 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor: Colors.black,
                     floating: true,
                     // expandedHeight: 200,
-                    title: const Text('TEER APP'),
+                    title: Image.asset(
+                      'assets/images/logo.png',
+                      height: 70,
+                      color: Colors.blue,
+                    ),
                     pinned: true,
                     centerTitle: false,
                     // leading: isDrawerOpen
