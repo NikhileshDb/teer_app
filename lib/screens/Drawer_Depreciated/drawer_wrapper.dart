@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:teer_common/screens/Drawer/drawer_screen.dart';
+
 import 'package:teer_common/services/database/database_service.dart';
 
 import '../../models/teer_result.dart';
 import '../Home/home_screen.dart';
+import 'drawer_screen.dart';
 
 class DrawerWrapper extends StatefulWidget {
   const DrawerWrapper({Key? key}) : super(key: key);

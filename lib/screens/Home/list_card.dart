@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:teer_common/screens/History/result_history.dart';
 
 class ListCard extends StatelessWidget {
   const ListCard({
@@ -24,11 +23,8 @@ class ListCard extends StatelessWidget {
       splashColor: Colors.amberAccent,
       highlightColor: Colors.white.withOpacity(0),
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    HistoryScreen(gameProvider: gameProvider)));
+        Navigator.pushNamed(context, '/history',
+            arguments: {'gameProvider': gameProvider});
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),

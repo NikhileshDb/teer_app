@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:teer_common/global_components/navigation_drawer_widget.dart';
 
 import '../../models/common_numer.dart';
 import '../../services/database/database_service.dart';
@@ -28,6 +29,7 @@ class _CommoNumberScreenState extends State<CommoNumberScreen> {
         value: DatabaseService().getCommonNumberBy(selectedDate),
         initialData: const [],
         child: Scaffold(
+          drawer: const NavigationDrawerWidget(),
           backgroundColor: Colors.white,
           appBar: AppBar(
             title: Image.asset(
