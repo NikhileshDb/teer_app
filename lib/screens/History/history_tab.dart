@@ -44,10 +44,16 @@ class _HistoryTabState extends State<HistoryTab> {
                             DataCell(Text(
                                 DateFormat('dd-MM-yyyy').format(e.date),
                                 style: const TextStyle(fontSize: 16))),
-                            DataCell(Text(e.firstRound.toString(),
+                            DataCell(Text(
+                                e.firstRound == 111
+                                    ? 'XX'
+                                    : e.firstRound.toString(),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold))),
-                            DataCell(Text(e.secondRound.toString(),
+                            DataCell(Text(
+                                e.secondRound == 111
+                                    ? 'XX'
+                                    : e.secondRound.toString(),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold))),
                           ],

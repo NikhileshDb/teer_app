@@ -20,7 +20,7 @@ class BuildBox extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.4,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       width: size.width * 0.8,
@@ -36,6 +36,8 @@ class BuildBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             provider.isEmpty ? '' : provider.toString().toUpperCase(),
@@ -48,16 +50,25 @@ class BuildBox extends StatelessWidget {
             height: 10,
           ),
           Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: commonNumber!.isEmpty
                   ? [const Text('Sorry No Common Today')]
                   : commonNumber!
-                      .map((e) => Text(
-                            e == null ? "Sorry No Common Today" : e.toString(),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                      .map((e) => Expanded(
+                            child: FittedBox(
+                              child: Text(
+                                e == 0
+                                    ? "Sorry No Common Today"
+                                    : e.toString() + ',',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                                softWrap: false,
+                                maxLines: 2,
+                              ),
                             ),
                           ))
                       .toList()),
@@ -77,7 +88,7 @@ class BuildBox extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(house == null ? 'X' : house.toString(),
+                  Text(house == 0 ? 'X' : house.toString(),
                       style: const TextStyle(
                         color: Colors.white,
                       )),
@@ -93,7 +104,7 @@ class BuildBox extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(ending == null ? 'X' : ending.toString(),
+                  Text(ending == 0 ? 'X' : ending.toString(),
                       style: const TextStyle(
                         color: Colors.white,
                       )),

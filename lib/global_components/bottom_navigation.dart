@@ -2,9 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:teer_common/services/ad_helper.dart';
-
 import '../screens/Common/common_screen.dart';
-
 import '../screens/History/result_history.dart';
 import '../screens/Home/home_screen.dart';
 
@@ -31,17 +29,19 @@ class _NavigationCurvedState extends State<NavigationCurved> {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          _interstitialAd = ad;
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               //ToDo
               // Navigator.of(context).pop();
             },
           );
-          isInterstitialAdReady = true;
+          setState(() {
+            _interstitialAd = ad;
+            isInterstitialAdReady = true;
+          });
         },
         onAdFailedToLoad: (err) {
-          print('Failed to load an interstitial add: ${err.message}');
+          // print('Failed to load an interstitial add: ${err.message}');
         },
       ),
     );

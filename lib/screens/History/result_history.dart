@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:teer_common/screens/History/history_tab.dart';
-import 'package:teer_common/screens/History/statistic_tab.dart';
+import 'package:teer_common/screens/History/hottest_tab.dart';
 import 'package:teer_common/services/database/database_service.dart';
 import 'dart:math' as m;
-
 import '../../models/teer_result.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -66,7 +65,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                 bottom: TabBar(
                   tabs: const [
                     Tab(text: 'History'),
-                    Tab(text: 'Statistic'),
+                    Tab(text: 'Hottest'),
                   ],
                   controller: controller,
                 ),
@@ -96,7 +95,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                   controller: controller,
                   children: [
                     HistoryTab(sliderVal: sliderVal),
-                    StatisticTab(sliderVal: sliderVal),
+                    HottestNumbers(sliderVal: sliderVal),
                   ],
                 ),
               ),

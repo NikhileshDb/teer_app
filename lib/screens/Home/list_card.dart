@@ -73,7 +73,7 @@ class ListCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        firstRound.toString(),
+                        firstRound == 111 ? 'XX' : firstRound.toString(),
                         style: const TextStyle(
                           fontSize: 36,
                           color: Colors.white,
@@ -92,7 +92,7 @@ class ListCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      secondRound.toString(),
+                      secondRound == 111 ? 'XX' : secondRound.toString(),
                       style: const TextStyle(
                         fontSize: 36,
                         color: Colors.white,

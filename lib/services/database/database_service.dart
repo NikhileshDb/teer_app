@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:teer_common/models/common_numer.dart';
-
 import '../../models/profile_details.dart';
 import '../../models/teer_result.dart';
 
@@ -136,5 +135,23 @@ class DatabaseService {
       'provider': "Juwai",
       'date': DateTime.now(),
     });
+  }
+
+  Stream<List<TeerResult?>> getSingleResult(String provider) {
+    // Stream<QuerySnapshot<Object?>>
+    Stream<List<TeerResult?>> resSnapshot = latestResult
+        .orderBy('date', descending: true)
+        .where('provider', isEqualTo: provider)
+        .limit(3)
+        .snapshots()
+        .map((event) => event.docs
+            .map((item) => TeerResult(
+                  date: item.get('date').toDate(),
+                  provider: item.get('provider').toString(),
+                  firstRound: item.get('firstRound'),
+                  secondRound: item.get('secondRound'),
+                ))
+            .toList());
+    return resSnapshot;
   }
 }

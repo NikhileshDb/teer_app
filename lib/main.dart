@@ -2,9 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teer_common/routes/app_routes.dart';
-
 import 'package:teer_common/services/auth_service.dart';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'models/teer_result.dart';
 import 'models/user_model.dart';
@@ -58,8 +56,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
-// StreamProvider<UserModel?>.value(
-//       value: AuthService().user,
-//       initialData: null,
